@@ -1,20 +1,22 @@
 /*importamos librerias*/
-import express,{json} from 'express';
-import morgan from 'morgan';
+const express = require( 'express');
+const morgan = require('morgan');
 
 /*importamos routes*/
+const router_api = require( './routes/index.js');
 
 /*start*/
 const app = express();
 
+
 /*Middlewares*/
 app.use(morgan('dev')); /*muestra en consola peticiones*/
-app.use(json()); 	/*lee json*/
+app.use(express.json()); 	/*lee json*/
 
 /*use routes*/
-app.get('/',(req,res)=>{
-	res.send('hello word peach');
-})
+router_api(app);
 
 module.exports = app;
+
+
 
